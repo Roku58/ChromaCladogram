@@ -10,18 +10,9 @@ public class MoveP : MonoBehaviour
     [SerializeField] float _jumpPower = 5f;
     [SerializeField] float _stepPower = 30f;
 
-    [SerializeField] public float HitStopTime = 0.23f;
-
-    GameObject closeEnemy;
-    [SerializeField] float closeDist = 1000;
-    Vector3 enemypos;
-    GameObject enemy = default;//
     int jumpCount;
-    Vector3 dir;
-
     Rigidbody _rb = default;
     Animator _anim = default;
-    Ray ray;
     /// <summary>接地フラグ</summary>
     bool _isGrounded;
 
@@ -30,7 +21,6 @@ public class MoveP : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
-        //StartCoroutine(DelayCoroutine());
     }
 
     void Update()
