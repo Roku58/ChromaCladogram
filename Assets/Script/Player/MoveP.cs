@@ -36,13 +36,17 @@ public class MoveP : MonoBehaviour
     void Update()
     {
         _isGrounded = CheckGrounded();
+ 
+    }
+
+    private void FixedUpdate()
+    {
         if (_isGrounded)
         {
             Move();
             Jump();
-        }   
+        }
     }
-
     void LateUpdate()
     {
         // アニメーションの処理
@@ -75,7 +79,10 @@ public class MoveP : MonoBehaviour
         // Y 軸方向の速度を保ちながら、速度ベクトルを求めてセットする
         Vector3 velocity = dir.normalized * _moveSpeed;
         velocity.y = _rb.velocity.y;
-        _rb.velocity = velocity;
+        //_rb.velocity = velocity;
+        //_rb.AddForce(dir * _stepPower, ForceMode.Force);
+        _rb.AddForce(dir * _moveSpeed);
+
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
