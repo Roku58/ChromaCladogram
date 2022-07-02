@@ -74,9 +74,9 @@ public class MoveP : MonoBehaviour
         _rb.AddForce(dir * _moveSpeed);
 
         //入力がないときは減速
-        if (h == 0 && v == 0)
+        if (h == 0 && v == 0 && _isGrounded)
         {
-            _rb.AddForce(_moveSpeed * (dir - _rb.velocity　* 0.5f));
+            _rb.AddForce(_moveSpeed * (dir - _rb.velocity　* 0.1f));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))

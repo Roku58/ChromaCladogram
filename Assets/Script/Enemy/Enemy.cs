@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
+        lock (_player);
         _agent.SetDestination(_player.transform.position);
 
     }
