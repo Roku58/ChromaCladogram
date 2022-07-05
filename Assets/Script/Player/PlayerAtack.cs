@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class PlayerAtack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Animator _animator;
+
+
     void Start()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Attack();
+    }
+
+    void Attack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            NormalAttack();
+        }
+
+    }
+
+    void NormalAttack()
+    {
+        _animator.SetTrigger("Attack1");
+    }
+
+    void SpecialAttack()
+    {
+
     }
 }
