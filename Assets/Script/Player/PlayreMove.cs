@@ -24,12 +24,14 @@ public class PlayreMove : MonoBehaviour
 
     void Update()
     {
-        if(!_playerAtack.IsAtack)
-        {
-            Move();
+        //if(!_playerAtack.IsAtack)
+        //{
+        //    Move();
 
-        }
+        //}
+        Move();
         Jump();
+
         _isGrounded = CheckGrounded();
     }
 
@@ -47,6 +49,12 @@ public class PlayreMove : MonoBehaviour
 
     void Move()
     {
+        if (_playerAtack.IsAtack)
+        {
+            return;
+            //_rb.velocity = Vector3.zero;
+
+        }
         // 入力を受け付ける
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
