@@ -5,7 +5,12 @@ using UnityEngine;
 public class PlayerAtack : MonoBehaviour
 {
     Animator _animator;
-
+    bool _isAtack = false;
+    public bool IsAtack // プロパティ
+    {
+        get { return _isAtack; }  // 通称ゲッター。呼び出した側がscoreを参照できる
+        set { _isAtack = value; } // 通称セッター。value はセットする側の数字などを反映する
+    }
 
     void Start()
     {
@@ -14,10 +19,10 @@ public class PlayerAtack : MonoBehaviour
 
     void Update()
     {
-        Attack();
+        AttackManager();
     }
 
-    void Attack()
+    void AttackManager()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -28,11 +33,17 @@ public class PlayerAtack : MonoBehaviour
 
     void NormalAttack()
     {
+        _isAtack = true;
         _animator.SetTrigger("Attack1");
     }
 
     void SpecialAttack()
     {
 
+    }
+
+    void AtackEnd()
+    {
+        _isAtack = false ;
     }
 }

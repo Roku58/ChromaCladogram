@@ -10,21 +10,25 @@ public class PlayreMove : MonoBehaviour
     [SerializeField] float _jumpPower = 5f;
     [SerializeField] float _stepPower = 30f;
     int jumpCount;
+    bool _isGrounded;
     Rigidbody _rb = default;
     Animator _anim = default;
-    /// <summary>接地フラグ</summary>
-    bool _isGrounded;
-
+    PlayerAtack _playerAtack;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
+        _playerAtack = GetComponent<PlayerAtack>();
     }
 
     void Update()
     {
-        Move();
+        if(!_playerAtack.IsAtack)
+        {
+            Move();
+
+        }
         Jump();
         _isGrounded = CheckGrounded();
     }
@@ -99,8 +103,11 @@ public class PlayreMove : MonoBehaviour
         //放つ光線の初期位置と姿勢
         var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
         //光線の距離(今回カプセルオブジェクトに設定するのでHeight/2 + 0.1以上を設定)
-        var distance = 1.2f;
+        var distance = 0.25f;
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 0.1f, false);
         //Raycastがhitするかどうかで判定レイヤーを指定することも可能
         return Physics.Raycast(ray, distance);
     }
+
+
 }
