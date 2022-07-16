@@ -24,11 +24,12 @@ public class PlayreMove : MonoBehaviour
 
     void Update()
     {
-        if(!_playerAtack.IsAtack)
-        {
-            Move();
+        //if(!_playerAtack.IsAtack)
+        //{
+        //    Move();
 
-        }
+        //}
+        Move();
         Jump();
         _isGrounded = CheckGrounded();
     }
@@ -62,6 +63,11 @@ public class PlayreMove : MonoBehaviour
             this.transform.forward = dir;
         }
 
+        if(_playerAtack.IsAtack)
+        {
+            _rb.velocity = Vector3.zero;
+            return;
+        }
         // Y 軸方向の速度を保ちながら、速度ベクトルを求めてセットする
         Vector3 velocity = dir.normalized * _moveSpeed;
         velocity.y = _rb.velocity.y;

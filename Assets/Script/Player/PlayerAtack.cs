@@ -33,8 +33,9 @@ public class PlayerAtack : MonoBehaviour
 
     void NormalAttack()
     {
-        _isAtack = true;
         _animator.SetTrigger("Attack1");
+
+        _isAtack = true;
     }
 
     void SpecialAttack()
