@@ -1,41 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int _hp = 100;
-    [SerializeField] int _maxhp = 100;
-    [SerializeField] float _movespeed = 10;
+    [SerializeField, Tooltip("移動速度")]
+    float _moveSpeed;
+    [SerializeField, Tooltip("最大体力")]
+    int _maxHp;
+    [SerializeField, Tooltip("現在体力")]
+    int _hp;
+    [SerializeField, Tooltip("攻撃力")]
+    int _atk;
+    [SerializeField, Tooltip("ドロップアイテムの種類（配列の要素）")]
+    int _dropType;
+    [SerializeField, Tooltip("ドロップアイテムの配列")]
+    GameObject[] _drop = default;
+    [SerializeField, Tooltip("")]
+    bool _canMove = true;
+    GameObject _player = default; //
+    Rigidbody _rb = default;
 
-    NavMeshAgent _agent = null;
-    GameObject _player = null;
     void Start()
     {
+        _hp = _maxHp;
         _player = GameObject.FindGameObjectWithTag("Player");
-        _agent = GetComponent<NavMeshAgent>();
-    }
-
-    void Update()
-    {
-        Move();
-    }
-
-    void Move()
-    {
-        lock (_player);
-        _agent.SetDestination(_player.transform.position);
 
     }
 
-    public void GetDamage(int dmg)
+    private void Update()
     {
+        if (_player != null)
+        {
+            _player = GameObject.FindGameObjectWithTag("Player");
+        }
+        if(_canMove)
+        {
+            Move();
+
+        }
 
     }
 
-    void Death()
+    /// <summary> エネミー移動処理 </summary>
+    private void Move()
     {
+        if (_player != null)
+        {
+            transform.LookAt(_player.transform);
+            Vector3 sub = _player.transform.position - transform.position;
+            sub.Normalize();
+            transform.position += sub * _moveSpeed * Time.deltaTime;
+            Vector3 velocity = sub.normalized * _moveSpeed;
+            velocity.y = _rb.velocity.y;
+            _rb.velocity = velocity;
+        }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            //↓に拠点のダメージ処理があるスクリプトを指定
+            collision.gameObject.GetComponent<PlayerState>().GetDamage(_atk);
+        }
+    }
+
+    /// <summary> エネミー死亡処理 </summary>
+    private void Death()
+    {
+        if(_drop != null)
+        {
+            Instantiate(_drop[_dropType]);
+        }
+        Destroy(this);
+    }
+
+    /// <summary> エネミーダメージ処理 </summary>
+    public void GetDamage(int damage)
+    {
+        _hp -= damage;
+        Debug.Log(damage + " ダメージを受けてエネミーのHPが " + _hp + " になった");
+
+        if(_hp <= 0)
+        {
+            Death();
+        }
     }
 }
