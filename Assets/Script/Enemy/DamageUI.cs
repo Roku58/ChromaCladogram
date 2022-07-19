@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class DamageUI : MonoBehaviour
 {
 
+	//private TextMeshPro damageText;
 	private Text damageText;
+
 	[SerializeField, Header("フェードアウトするスピード")]
 	private float fadeOutSpeed = 1f;
 	[SerializeField, Header("移動値")]
@@ -22,11 +25,18 @@ public class DamageUI : MonoBehaviour
 		transform.position += Vector3.up * moveSpeed * Time.deltaTime;
 
 		damageText.color = Color.Lerp(damageText.color, new Color(1f, 0f, 0f, 0f), fadeOutSpeed * Time.deltaTime);
-		damageText.text = "ダメージ";
 
 		if (damageText.color.a <= 0.1f)
 		{
 			Destroy(gameObject);
 		}
+	}
+
+	public void DamageTextUI(int damage)
+    {
+		//string dmg;
+		//dmg = damage.ToString("000");
+		damageText.text = ($"{damage}");
+
 	}
 }

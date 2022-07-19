@@ -72,11 +72,11 @@ public class Enemy : MonoBehaviour
     /// <summary> エネミー死亡処理 </summary>
     private void Death()
     {
-        if(_drop != null)
+        if(_drop[_dropType] != null)
         {
             Instantiate(_drop[_dropType]);
         }
-        Destroy(this);
+        //Destroy(gameObject);
     }
 
     /// <summary> エネミーダメージ処理 </summary>
@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
         Debug.Log(damage + " ダメージを受けてエネミーのHPが " + _hp + " になった");
 
         var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
-
+        //obj.GetComponent<DamageUI>().DamageTextUI(damage);
         if (_hp <= 0)
         {
             Death();

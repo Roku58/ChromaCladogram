@@ -861,9 +861,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b76bbe541f5be4f9d86f274b3a8313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeed: 0
+  _maxHp: 0
   _hp: 100
-  _maxhp: 100
-  _movespeed: 10
+  _atk: 5
+  _dropType: 0
+  _drop:
+  - {fileID: 1452807608324640521, guid: c30f70c40034b154fa78305f675cfb3b, type: 3}
+  damageUI: {fileID: 4903963406607691375, guid: ba1b18d33ee8c494694a4a66d108c9d7, type: 3}
+  _canMove: 1
 --- !u!195 &5340456045358876685
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -19,7 +19,6 @@ public class Weapon : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            //↓に拠点のダメージ処理があるスクリプトを指定
             other.gameObject.GetComponent<Enemy>().GetDamage(_atk, other);
         }
     }
