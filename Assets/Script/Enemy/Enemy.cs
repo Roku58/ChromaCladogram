@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,16 +19,18 @@ public class Enemy : MonoBehaviour
     GameObject[] _drop = default;
     [SerializeField, Header("ダメージUI")]
     private GameObject damageUI;
-    [SerializeField, Header("")]
+    [SerializeField]
     bool _canMove = true;
+    [SerializeField]
+    TimeManager _timeManager;
     GameObject _player = default; //
     Rigidbody _rb = default;
-
+    CinemachineImpulseSource _impulseSource;
     void Start()
     {
         _hp = _maxHp;
         _player = GameObject.FindGameObjectWithTag("Player");
-
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Update()
@@ -36,12 +39,17 @@ public class Enemy : MonoBehaviour
         {
             _player = GameObject.FindGameObjectWithTag("Player");
         }
-        if(_canMove)
+        if (_canMove)
         {
             Move();
 
         }
-
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("a");
+            _impulseSource.GenerateImpulse();
+            //_impulseSource.GenerateImpulseAt();
+        }
     }
 
     /// <summary> エネミー移動処理 </summary>
@@ -72,7 +80,7 @@ public class Enemy : MonoBehaviour
     /// <summary> エネミー死亡処理 </summary>
     private void Death()
     {
-        if(_drop[_dropType] != null)
+        if (_drop[_dropType] != null)
         {
             Instantiate(_drop[_dropType]);
         }
@@ -80,21 +88,20 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary> エネミーダメージ処理 </summary>
-    public void GetDamage(int damage　, Collider col)
+    public void GetDamage(int damage, Collider col)
     {
         _hp -= damage;
         Debug.Log(damage + " ダメージを受けてエネミーのHPが " + _hp + " になった");
-
-        var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
-        //obj.GetComponent<DamageUI>().DamageTextUI(damage);
-        if (_hp <= 0)
+        _timeManager.SlowDown();
         {
-            Death();
+            //_shake.Shake(0.25f, 0.1f);
+
+            var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
+            //obj.GetComponent<DamageUI>().DamageTextUI(damage);
+            if (_hp <= 0)
+            {
+                Death();
+            }
         }
     }
-    //public void Damage(Collider col)
-    //{
-    //    //　DamageUIをインスタンス化。登場位置は接触したコライダの中心からカメラの方向に少し寄せた位置
-    //    var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
-    //}
 }
