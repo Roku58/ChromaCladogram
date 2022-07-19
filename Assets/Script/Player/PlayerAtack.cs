@@ -48,4 +48,8 @@ public class PlayerAtack : MonoBehaviour
     {
         _isAtack = false ;
     }
+    void AtackMove(float add)
+    {
+
+    }
 }

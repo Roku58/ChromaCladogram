@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayreMove : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 7.5f;
+    [SerializeField] float _atackmoveSpeed = 0.1f;
     [SerializeField] float _jumpPower = 5f;
     [SerializeField] float _stepPower = 30f;
     int jumpCount;
@@ -65,15 +66,24 @@ public class PlayreMove : MonoBehaviour
             this.transform.forward = dir;
         }
 
-        if(_playerAtack.IsAtack)
-        {
-            _rb.velocity = Vector3.zero;
-            return;
-        }
+        //if(_playerAtack.IsAtack)
+        //{
+        //    _rb.velocity = Vector3.zero;
+        //    return;
+        //}
+
         // Y 軸方向の速度を保ちながら、速度ベクトルを求めてセットする
         Vector3 velocity = dir.normalized * _moveSpeed;
         velocity.y = _rb.velocity.y;
-        _rb.velocity = velocity;
+        if (_playerAtack.IsAtack)
+        {
+            _rb.velocity = dir.normalized * _moveSpeed * _atackmoveSpeed;
+        }
+        else
+        {
+            _rb.velocity = velocity;
+
+        }
 
         //if (Input.GetButtonDown("Sift"))
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -117,5 +127,8 @@ public class PlayreMove : MonoBehaviour
         return Physics.Raycast(ray, distance);
     }
 
-
+    void AtackMove(float add)
+    {
+        _rb.AddForce(Vector3.forward * add, ForceMode.Impulse);
+    }
 }
