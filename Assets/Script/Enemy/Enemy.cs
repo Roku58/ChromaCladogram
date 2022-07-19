@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField, Tooltip("移動速度")]
+    [SerializeField, Header("移動速度")]
     float _moveSpeed;
-    [SerializeField, Tooltip("最大体力")]
+    [SerializeField, Header("最大体力")]
     int _maxHp;
-    [SerializeField, Tooltip("現在体力")]
+    [SerializeField, Header("現在体力")]
     int _hp;
-    [SerializeField, Tooltip("攻撃力")]
+    [SerializeField, Header("攻撃力")]
     int _atk;
-    [SerializeField, Tooltip("ドロップアイテムの種類（配列の要素）")]
+    [SerializeField, Header("ドロップアイテムの種類（配列の要素）")]
     int _dropType;
-    [SerializeField, Tooltip("ドロップアイテムの配列")]
+    [SerializeField, Header("ドロップアイテムの配列")]
     GameObject[] _drop = default;
-    [SerializeField, Tooltip("")]
+    [SerializeField, Header("ダメージUI")]
+    private GameObject damageUI;
+    [SerializeField, Header("")]
     bool _canMove = true;
     GameObject _player = default; //
     Rigidbody _rb = default;
@@ -78,14 +80,21 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary> エネミーダメージ処理 </summary>
-    public void GetDamage(int damage)
+    public void GetDamage(int damage　, Collider col)
     {
         _hp -= damage;
         Debug.Log(damage + " ダメージを受けてエネミーのHPが " + _hp + " になった");
 
-        if(_hp <= 0)
+        var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
+
+        if (_hp <= 0)
         {
             Death();
         }
     }
+    //public void Damage(Collider col)
+    //{
+    //    //　DamageUIをインスタンス化。登場位置は接触したコライダの中心からカメラの方向に少し寄せた位置
+    //    var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
+    //}
 }

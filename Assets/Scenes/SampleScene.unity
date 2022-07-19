@@ -919,6 +919,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1226796448094093499, guid: c19239bf6094ffa4984d6e34ca9ea0f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c19239bf6094ffa4984d6e34ca9ea0f1, type: 3}
 --- !u!1001 &5340456045116622010
@@ -940,6 +944,10 @@ PrefabInstance:
       propertyPath: _canMove
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5340456045358876674, guid: b2be808aaacb120479adb67d9ca9aa10, type: 3}
+      propertyPath: damageUI
+      value: 
+      objectReference: {fileID: 4903963406607691375, guid: ba1b18d33ee8c494694a4a66d108c9d7, type: 3}
     - target: {fileID: 5340456045358876674, guid: b2be808aaacb120479adb67d9ca9aa10, type: 3}
       propertyPath: _moveSpeed
       value: 10
