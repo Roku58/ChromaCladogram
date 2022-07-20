@@ -17,6 +17,7 @@ public class PlayreMove : MonoBehaviour
     Rigidbody _rb = default;
     Animator _anim = default;
     PlayerAtack _playerAtack;
+    Vector2 _position;
 
     void Start()
     {
@@ -52,8 +53,10 @@ public class PlayreMove : MonoBehaviour
     void Move()
     {
         // 入力を受け付ける
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        //float h = Input.GetAxisRaw("Horizontal");
+        //float v = Input.GetAxisRaw("Vertical");
+        float h = _position.x;
+        float v = _position.y;
 
         // 入力された方向を「カメラを基準とした XZ 平面上のベクトル」に変換する
         Vector3 dir = new Vector3(h, 0, v);
@@ -85,14 +88,18 @@ public class PlayreMove : MonoBehaviour
 
         }
 
-        //if (Input.GetButtonDown("Sift"))
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //velocity = dir.normalized * _stepPower;
-            //velocity.y = _rb.velocity.y;
-            //_rb.velocity = velocity;
-            _rb.AddForce(dir * _stepPower, ForceMode.VelocityChange);
-            Debug.Log("Step");
+
+            if (dir != Vector3.zero)
+            {
+                _rb.velocity = dir.normalized * _stepPower;
+            }
+            else
+            {
+                _rb.velocity = -transform.forward * _stepPower;
+
+            }
             _anim.SetTrigger("Step");
 
         }
@@ -127,8 +134,12 @@ public class PlayreMove : MonoBehaviour
         return Physics.Raycast(ray, distance);
     }
 
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        _position = context.ReadValue<Vector2>();
+    }
     void AtackMove(float add)
     {
-        _rb.AddForce(Vector3.forward * add, ForceMode.Impulse);
+        _rb.velocity = transform.forward* add;
     }
 }

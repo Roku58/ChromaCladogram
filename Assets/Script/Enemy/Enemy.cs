@@ -51,10 +51,11 @@ public class Enemy : MonoBehaviour
             Debug.Log("a");
             if(_impulseSource)
             {
-                _impulseSource.GenerateImpulse();
+                //_impulseSource.GenerateImpulse();
+                _impulseSource.GenerateImpulseAt(Vector3.zero,Vector3.up);
+
 
             }
-            //_impulseSource.GenerateImpulseAt();
         }
     }
 
@@ -103,7 +104,18 @@ public class Enemy : MonoBehaviour
             //_shake.Shake(0.25f, 0.1f);
 
             var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
-            //obj.GetComponent<DamageUI>().DamageTextUI(damage);
+        
+            obj.GetComponent<DamageUI>().DamageTextUI(damage);
+
+            //if (obj.GetComponent<DamageUI>() != null)
+            //{
+            //    Debug.Log("null‚¶‚á‚È‚¢");
+            //}
+            //else
+            //{
+            //    Debug.Log("null");
+            //}
+
             if (_hp <= 0)
             {
                 Death();

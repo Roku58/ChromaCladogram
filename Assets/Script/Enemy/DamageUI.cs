@@ -16,7 +16,7 @@ public class DamageUI : MonoBehaviour
 
 	void Start()
 	{
-		damageText = GetComponentInChildren<Text>();
+		
 	}
 
 	void LateUpdate()
@@ -34,9 +34,10 @@ public class DamageUI : MonoBehaviour
 
 	public void DamageTextUI(int damage)
     {
+		damageText = GetComponentInChildren<Text>();
 		//string dmg;
 		//dmg = damage.ToString("000");
-		damageText.text = ($"{damage}");
+		 damageText.text = ($"{damage}");
 
 	}
 }

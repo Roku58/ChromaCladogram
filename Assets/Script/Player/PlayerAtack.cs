@@ -36,7 +36,6 @@ public class PlayerAtack : MonoBehaviour
     {
         _animator.SetTrigger("Attack1");
 
-        _isAtack = true;
     }
 
     void SpecialAttack()
@@ -47,6 +46,10 @@ public class PlayerAtack : MonoBehaviour
     void AtackEnd()
     {
         _isAtack = false ;
+    }
+    void AtackStart()
+    {
+        _isAtack = true;
     }
     void AtackMove(float add)
     {
