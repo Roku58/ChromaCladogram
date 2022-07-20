@@ -27,7 +27,9 @@ public class TimeManager : MonoBehaviour
 			}
 		}
 	}
-	//@ŠÔ‚ğ’x‚ç‚¹‚éˆ—
+	/// <summary>
+	/// ŠÔ‚ğ’x‚ç‚¹‚éˆ—
+	/// </summary>
 	public void SlowDown()
 	{
 		elapsedTime = 0f;
@@ -35,7 +37,9 @@ public class TimeManager : MonoBehaviour
 		isSlowDown = true;
 		Debug.Log($"{timeScale}");
 	}
-	//@ŠÔ‚ğŒ³‚É–ß‚·ˆ—
+	/// <summary>
+	/// ŠÔ‚ğŒ³‚É–ß‚·ˆ—
+	/// </summary>
 	public void SetNormalTime()
 	{
 		Time.timeScale = 1f;

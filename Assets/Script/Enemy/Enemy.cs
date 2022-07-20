@@ -6,26 +6,28 @@ using Cinemachine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField, Header("移動速度")]
-    float _moveSpeed;
+    float _moveSpeed = 0;
     [SerializeField, Header("最大体力")]
-    int _maxHp;
+    int _maxHp = 100;
     [SerializeField, Header("現在体力")]
-    int _hp;
+    int _hp = 0;
     [SerializeField, Header("攻撃力")]
-    int _atk;
+    int _atk = 1;
     [SerializeField, Header("ドロップアイテムの種類（配列の要素）")]
-    int _dropType;
+    int _dropType = 0;
     [SerializeField, Header("ドロップアイテムの配列")]
     GameObject[] _drop = default;
     [SerializeField, Header("ダメージUI")]
-    private GameObject damageUI;
+    private GameObject damageUI = default;
     [SerializeField]
     bool _canMove = true;
     [SerializeField]
-    TimeManager _timeManager;
+    TimeManager _timeManager = default;
     GameObject _player = default; //
     Rigidbody _rb = default;
-    CinemachineImpulseSource _impulseSource;
+    CinemachineImpulseSource _impulseSource = default;
+
+
     void Start()
     {
         _hp = _maxHp;
@@ -47,7 +49,11 @@ public class Enemy : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             Debug.Log("a");
-            _impulseSource.GenerateImpulse();
+            if(_impulseSource)
+            {
+                _impulseSource.GenerateImpulse();
+
+            }
             //_impulseSource.GenerateImpulseAt();
         }
     }
