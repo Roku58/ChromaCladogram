@@ -51,8 +51,7 @@ public class PlayerAtack : MonoBehaviour
     {
         _isAtack = true;
     }
-    void AtackMove(float add)
-    {
 
-    }
+
+
 }

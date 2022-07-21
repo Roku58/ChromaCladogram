@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
-
 //using DG.Tweening;
 
 /// <summary>
@@ -31,7 +32,6 @@ public class PlayreMove : MonoBehaviour
         //if(!_playerAtack.IsAtack)
         //{
         //    Move();
-
         //}
         Move();
         Jump();
@@ -104,10 +104,11 @@ public class PlayreMove : MonoBehaviour
 
         }
     }
-
+    /// <summary>
+    /// ジャンプ処理
+    /// </summary>
     void Jump()
     {
-        // ジャンプ処理
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             if (jumpCount <= 1)//  もし、Groundedがtrueなら、
@@ -134,12 +135,39 @@ public class PlayreMove : MonoBehaviour
         return Physics.Raycast(ray, distance);
     }
 
+    /// <summary>
+    /// InputSystemイベント受付処理
+    /// </summary>
+    /// <param name="context"></param>
     public void OnMove(InputAction.CallbackContext context)
     {
         _position = context.ReadValue<Vector2>();
     }
+
+    /// <summary>
+    /// 攻撃中の移動処理
+    /// </summary>
+    /// <param name="add"></param>
     void AtackMove(float add)
     {
         _rb.velocity = transform.forward* add;
+    }
+
+    /// <summary>
+    /// 最も近いエネミーを探す処理
+    /// </summary>
+    void EnemySearch()
+    {
+
+    }
+
+    /// <summary>
+    /// オブジェクトに向けての移動処理
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="speed"></param>
+    void TargetMove(GameObject target, float speed)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
     }
 }
