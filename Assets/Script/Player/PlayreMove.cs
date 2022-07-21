@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-//using DG.Tweening;
+using DG.Tweening;
 
 /// <summary>
 /// </summary>
@@ -170,4 +170,24 @@ public class PlayreMove : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
     }
+
+    /// <summary>
+    /// 打ち上げ用の関数
+    /// </summary>
+    //public void OffGrvity()
+    //{
+    //    _rb.drag = 40; //RigidBodyのDragの数値を弄る
+    //}
+
+    //void Launch()
+    //{
+    //    OffGrvity(); //OffGrvityを実行
+    //    _rb.DOMoveY(7f, 0.5f);
+    //    Collider[] hitEnemies = Physics.OverlapSphere(AttackPoint.position, AttackRange, enemyLayers); //コライダー出現
+    //    foreach (Collider enemy in hitEnemies)
+    //    {
+    //        enemy.GetComponent<Enemy>().Launch(); //敵を打ち上げる
+    //        enemy.GetComponent<Enemy>().OffGrvity(); //敵側のOffGravityを実行
+    //    }
+    //}
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -83,6 +84,18 @@ public class Enemy : MonoBehaviour
             collision.gameObject.GetComponent<PlayerState>().GetDamage(_atk);
         }
     }
+
+    /// <summary>
+    /// 攻撃を受けた敵を打ち上げます。
+    /// </summary>
+    //public void Launch()
+    //{
+    //    _rb.DOMoveY(7f, 0.5f);
+    //}
+    //public void OffGrvity()
+    //{
+    //    _rb.drag = 40; //RigidBodyのDragの数値を弄る
+    //}
 
     /// <summary> エネミー死亡処理 </summary>
     private void Death()
