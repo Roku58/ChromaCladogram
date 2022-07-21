@@ -36,6 +36,16 @@ public class PlayreMove : MonoBehaviour
         Move();
         Jump();
         _isGrounded = CheckGrounded();
+
+        if (_playerAtack.IsAtack && !_isGrounded)
+        {
+            OffGrvity();
+        }
+        else
+        {
+            ONGrvity();
+
+        }
     }
 
     void LateUpdate()
@@ -91,15 +101,21 @@ public class PlayreMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
 
-            if (dir != Vector3.zero)
-            {
-                _rb.velocity = dir.normalized * _stepPower;
-            }
-            else
-            {
-                _rb.velocity = -transform.forward * _stepPower;
+            //if (dir != Vector3.zero)
+            //{
+            //    FrontStep();
+            //    //_rb.velocity = dir.normalized * _stepPower;
 
-            }
+
+            //}
+            //else
+            //{
+            //    BackStep();
+            //    //_rb.velocity = -transform.forward * _stepPower;
+                
+
+
+            //}
             _anim.SetTrigger("Step");
 
         }
@@ -111,7 +127,7 @@ public class PlayreMove : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            if (jumpCount <= 1)//  もし、Groundedがtrueなら、
+            if (jumpCount <= 2)//  もし、Groundedがtrueなら、
             {
                 if (_isGrounded == true)
                 {
@@ -147,10 +163,30 @@ public class PlayreMove : MonoBehaviour
     /// <summary>
     /// 攻撃中の移動処理
     /// </summary>
-    /// <param name="add"></param>
-    void AtackMove(float add)
+    /// <param name="addspeed"></param>
+    //void AtackMove(AnimationEvent animationEvent)
+    //{
+    //    float addspeed = animationEvent.floatParameter;
+    //    int vec_x = animationEvent.intParameter;
+    //    int vec_y = animationEvent.intParameter;
+    //    int vec_z = animationEvent.intParameter;
+    //    _rb.velocity = transform.rotation * new Vector3(vec_x, vec_y, vec_z) * addspeed;
+    //}
+    void AtackMove(float addspeed)
     {
-        _rb.velocity = transform.forward* add;
+
+        //_rb.velocity = transform.forward * addspeed;
+        this.transform.DOLocalMove(this.transform.position + transform.forward, 2f);
+        //_rb.DOMove(this.transform.position+ 1, addspeed);
+    }
+    void FrontStep(float _addPower)
+    {
+        this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, 0.8f);
+    }
+
+    void BackStep(float _addPower)
+    {
+        this.transform.DOLocalMove(this.transform.position + -transform.forward * _addPower, 0.5f);
     }
 
     /// <summary>
@@ -174,10 +210,14 @@ public class PlayreMove : MonoBehaviour
     /// <summary>
     /// 打ち上げ用の関数
     /// </summary>
-    //public void OffGrvity()
-    //{
-    //    _rb.drag = 40; //RigidBodyのDragの数値を弄る
-    //}
+    public void OffGrvity()
+    {
+        _rb.drag = 50; //RigidBodyのDragの数値を弄る
+    }
+    public void ONGrvity()
+    {
+        _rb.drag = 0; //RigidBodyのDragの数値を弄る
+    }
 
     //void Launch()
     //{
