@@ -179,14 +179,24 @@ public class PlayreMove : MonoBehaviour
         this.transform.DOLocalMove(this.transform.position + transform.forward, 2f);
         //_rb.DOMove(this.transform.position+ 1, addspeed);
     }
-    void FrontStep(float _addPower)
+    //void FrontStep(float _addPower)
+    //{
+    //    this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, 0.8f);
+    //}
+
+    void FrontStep(AnimationEvent animationEvent)
     {
-        this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, 0.8f);
+        int _addPower = animationEvent.intParameter;
+        float _count = animationEvent.floatParameter;
+
+        this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, _count);
     }
 
-    void BackStep(float _addPower)
+    void BackStep(AnimationEvent animationEvent)
     {
-        this.transform.DOLocalMove(this.transform.position + -transform.forward * _addPower, 0.5f);
+        int _addPower = animationEvent.intParameter;
+        float _count = animationEvent.floatParameter;
+        this.transform.DOLocalMove(this.transform.position + -transform.forward * _addPower, _count);
     }
 
     /// <summary>

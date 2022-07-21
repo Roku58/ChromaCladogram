@@ -17866,6 +17866,6 @@ AnimationClip:
     functionName: FrontStep
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 15
-    intParameter: 0
+    floatParameter: 0.8
+    intParameter: 15
     messageOptions: 0
