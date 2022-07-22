@@ -175,16 +175,12 @@ public class PlayreMove : MonoBehaviour
     void AtackMove(float addspeed)
     {
 
-        //_rb.velocity = transform.forward * addspeed;
-        this.transform.DOLocalMove(this.transform.position + transform.forward, 2f);
-        //_rb.DOMove(this.transform.position+ 1, addspeed);
+        _rb.velocity = transform.forward * addspeed;
+        //this.transform.DOLocalMove(this.transform.position + transform.forward, 2f);
     }
-    //void FrontStep(float _addPower)
-    //{
-    //    this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, 0.8f);
-    //}
 
-    void FrontStep(AnimationEvent animationEvent)
+
+    void FrontMove(AnimationEvent animationEvent)
     {
         int _addPower = animationEvent.intParameter;
         float _count = animationEvent.floatParameter;
@@ -192,11 +188,18 @@ public class PlayreMove : MonoBehaviour
         this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, _count);
     }
 
-    void BackStep(AnimationEvent animationEvent)
+    void BackMove(AnimationEvent animationEvent)
     {
         int _addPower = animationEvent.intParameter;
         float _count = animationEvent.floatParameter;
         this.transform.DOLocalMove(this.transform.position + -transform.forward * _addPower, _count);
+    }
+
+    void UpMove(AnimationEvent animationEvent)
+    {
+        int _addPower = animationEvent.intParameter;
+        float _count = animationEvent.floatParameter;
+        this.transform.DOLocalMove(this.transform.position + transform.up * _addPower, _count);
     }
 
     /// <summary>

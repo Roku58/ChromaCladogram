@@ -72428,11 +72428,11 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.43333334
-    functionName: AtackMove
+    functionName: FrontMove
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 5
-    intParameter: 0
+    floatParameter: 0.3
+    intParameter: 5
     messageOptions: 0
   - time: 1.8333334
     functionName: AtackEnd

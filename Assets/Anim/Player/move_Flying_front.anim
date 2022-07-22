@@ -17863,7 +17863,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: FrontStep
+    functionName: FrontMove
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.8

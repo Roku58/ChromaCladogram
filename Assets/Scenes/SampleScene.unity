@@ -606,7 +606,6 @@ GameObject:
   - component: {fileID: 184660800}
   - component: {fileID: 184660802}
   - component: {fileID: 184660805}
-  - component: {fileID: 184660804}
   - component: {fileID: 184660806}
   - component: {fileID: 184660803}
   - component: {fileID: 2095217248}
@@ -696,21 +695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d579bba2b1a1d4ba58c8447e96718c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &184660804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184660797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc7a8e8b4edcdf3438ee8e560dfabbad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 10
-  _jumpPower: 5
-  _stepPower: 30
 --- !u!114 &184660805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7876,7 +7860,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10563,7 +10547,7 @@ BoxCollider:
   m_GameObject: {fileID: 7398850362851001365}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.10008775, y: 0.10502118, z: 1.7769527}
   m_Center: {x: 0.0006984435, y: -0.07466517, z: -0.03113335}
@@ -11031,7 +11015,7 @@ BoxCollider:
   m_GameObject: {fileID: 7398850362851001365}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.100087725, y: 1.1602093, z: 0.20369792}
   m_Center: {x: 0.0006986315, y: 0.36190456, z: 0.64942294}

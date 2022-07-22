@@ -74408,11 +74408,11 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.36666667
-    functionName: AtackMove
+    functionName: UpMove
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 3
-    intParameter: 0
+    floatParameter: 0.2
+    intParameter: 2
     messageOptions: 0
   - time: 1.9333333
     functionName: AtackEnd
