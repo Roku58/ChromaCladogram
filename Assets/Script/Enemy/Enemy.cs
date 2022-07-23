@@ -45,18 +45,6 @@ public class Enemy : MonoBehaviour
         if (_canMove)
         {
             Move();
-
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            Debug.Log("a");
-            if(_impulseSource)
-            {
-                //_impulseSource.GenerateImpulse();
-                _impulseSource.GenerateImpulseAt(Vector3.zero,Vector3.up);
-
-
-            }
         }
     }
 
@@ -80,7 +68,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Weapon")
         {
-            //↓に拠点のダメージ処理があるスクリプトを指定
             collision.gameObject.GetComponent<PlayerState>().GetDamage(_atk);
         }
     }
@@ -88,22 +75,26 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 攻撃を受けた敵を打ち上げます。
     /// </summary>
-    //public void Launch()
-    //{
-    //    _rb.DOMoveY(7f, 0.5f);
-    //}
-    //public void OffGrvity()
-    //{
-    //    _rb.drag = 40; //RigidBodyのDragの数値を弄る
-    //}
+    public void Launch()
+    {
+        _rb.DOMoveY(7f, 0.5f);
+    }
+    public void OffGrvity()
+    {
+        _rb.drag = 40; //RigidBodyのDragの数値を弄る
+    }
+    public void ONGrvity()
+    {
+        _rb.drag = 0;
+    }
 
     /// <summary> エネミー死亡処理 </summary>
     private void Death()
     {
-        if (_drop[_dropType] != null)
-        {
-            Instantiate(_drop[_dropType]);
-        }
+        //if (_drop[_dropType] != null)
+        //{
+        //    Instantiate(_drop[_dropType]);
+        //}
         //Destroy(gameObject);
     }
 
@@ -112,27 +103,21 @@ public class Enemy : MonoBehaviour
     {
         _hp -= damage;
         Debug.Log(damage + " ダメージを受けてエネミーのHPが " + _hp + " になった");
+
+        var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
+        obj.GetComponent<DamageUI>().DamageTextUI(damage);
+
         _timeManager.SlowDown();
-        {
-            //_shake.Shake(0.25f, 0.1f);
 
-            var obj = Instantiate<GameObject>(damageUI, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
-        
-            obj.GetComponent<DamageUI>().DamageTextUI(damage);
-
-            //if (obj.GetComponent<DamageUI>() != null)
-            //{
-            //    Debug.Log("nullじゃない");
-            //}
-            //else
-            //{
-            //    Debug.Log("null");
-            //}
-
-            if (_hp <= 0)
+        if(_impulseSource)
             {
-                Death();
-            }
+            _impulseSource.GenerateImpulse();
+            //_impulseSource.GenerateImpulseAt(Vector3.zero, Vector3.up);
+        }
+        if (_hp <= 0)
+        {
+            Death();
         }
     }
+
 }

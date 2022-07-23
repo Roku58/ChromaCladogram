@@ -15,7 +15,7 @@ public class PlayreMove : MonoBehaviour
     [SerializeField] float _stepPower = 30f;
     int jumpCount;
     bool _isGrounded;
-    bool _is = false;
+    bool _isAnimMove = false;
     Rigidbody _rb = default;
     Animator _anim = default;
     PlayerAtack _playerAtack;
@@ -223,29 +223,42 @@ public class PlayreMove : MonoBehaviour
         this.transform.DOLocalMove(this.transform.position + -transform.up * _addPower, _count);
     }
 
-    void MoveStop()
+    IEnumerator MoveStop()
     {
-        _is = false;
+        _isAnimMove = true;
+        yield return 0.1f;
+        _isAnimMove = false;
     }
 
-    void FrontMove00(AnimationEvent animationEvent)
+    IEnumerator FrontMove00(int addspeed)
     {
-        int addspeed = animationEvent.intParameter;
-        while (_is)
+        while (!_isAnimMove)
         {
-            _rb.velocity = transform.forward * addspeed;
+            //_rb.AddForce(transform.forward * addspeed, ForceMode.VelocityChange);
+            _rb.velocity += transform.forward * addspeed;
+            yield return null;
+
         }
     }
-    void DownMove00(int addspeed)
-    {
-        //int addspeed = animationEvent.intParameter;
-        while (_isGrounded)
-        {
-            //_rb.velocity = -transform.up * addspeed;
-            _rb.transform.position = -transform.up * addspeed;
 
-            //_rb.AddForce(Vector3.down * addspeed );
-            //_rb.AddForce(-transform.up * addspeed , ForceMode.VelocityChange);
+    IEnumerator UptMove00(int addspeed)
+    {
+        while (!_isAnimMove)
+        {
+            //_rb.AddForce(transform.up * addspeed, ForceMode.VelocityChange);
+            _rb.velocity += transform.up * addspeed;
+            yield return null;
+
+        }
+    }
+
+    IEnumerator DownMove00(int addspeed)
+    {
+        while(!_isGrounded)
+        {
+            //_rb.AddForce(-transform.up * addspeed, ForceMode.VelocityChange);
+            _rb.velocity += Vector3.down * addspeed;
+            yield return null;
         }
     }
 
@@ -268,26 +281,30 @@ public class PlayreMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 打ち上げ用の関数
+    /// 
     /// </summary>
     public void OffGrvity()
     {
-        _rb.drag = 50; //RigidBodyのDragの数値を弄る
+        _rb.drag = 50;
     }
     public void ONGrvity()
     {
-        _rb.drag = 0; //RigidBodyのDragの数値を弄る
+        _rb.drag = 0;
     }
 
-    //void Launch()
+    /// <summary>
+    /// 打ち上げ用の関数
+    /// </summary>
+    //void Launch() 
     //{
-    //    OffGrvity(); //OffGrvityを実行
-    //    _rb.DOMoveY(7f, 0.5f);
-    //    Collider[] hitEnemies = Physics.OverlapSphere(AttackPoint.position, AttackRange, enemyLayers); //コライダー出現
+    //    _rb.DOMoveY(7f, 0.5f); //Y方向に0.5秒かけて上昇
+    //    Collider[] hitEnemies = Physics.OverlapSphere(AttackPoint.position, AttackRange); //コライダー出現
     //    foreach (Collider enemy in hitEnemies)
     //    {
-    //        enemy.GetComponent<Enemy>().Launch(); //敵を打ち上げる
-    //        enemy.GetComponent<Enemy>().OffGrvity(); //敵側のOffGravityを実行
+    //        if(enemy.GetComponent<Enemy>())
+    //        {
+    //            enemy.GetComponent<Enemy>().Launch(); //攻撃を受けた敵を打ち上げます。
+    //        }
     //    }
     //}
 }
