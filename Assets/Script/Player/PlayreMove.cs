@@ -15,6 +15,7 @@ public class PlayreMove : MonoBehaviour
     [SerializeField] float _stepPower = 30f;
     int jumpCount;
     bool _isGrounded;
+    bool _is = false;
     Rigidbody _rb = default;
     Animator _anim = default;
     PlayerAtack _playerAtack;
@@ -37,15 +38,15 @@ public class PlayreMove : MonoBehaviour
         Jump();
         _isGrounded = CheckGrounded();
 
-        if (_playerAtack.IsAtack && !_isGrounded)
-        {
-            OffGrvity();
-        }
-        else
-        {
-            ONGrvity();
+        //if (_playerAtack.IsAtack && !_isGrounded)
+        //{
+        //    OffGrvity();
+        //}
+        //else
+        //{
+        //    ONGrvity();
 
-        }
+        //}
     }
 
     void LateUpdate()
@@ -179,15 +180,24 @@ public class PlayreMove : MonoBehaviour
         //this.transform.DOLocalMove(this.transform.position + transform.forward, 2f);
     }
 
-
+    /// <summary>
+    /// 前方への移動
+    /// </summary>
+    /// <param name="animationEvent"></param>
     void FrontMove(AnimationEvent animationEvent)
     {
         int _addPower = animationEvent.intParameter;
         float _count = animationEvent.floatParameter;
 
+        _rb.velocity = transform.forward * _addPower;
+
         this.transform.DOLocalMove(this.transform.position + transform.forward * _addPower, _count);
     }
 
+    /// <summary>
+    /// 後方への移動
+    /// </summary>
+    /// <param name="animationEvent"></param>
     void BackMove(AnimationEvent animationEvent)
     {
         int _addPower = animationEvent.intParameter;
@@ -195,11 +205,48 @@ public class PlayreMove : MonoBehaviour
         this.transform.DOLocalMove(this.transform.position + -transform.forward * _addPower, _count);
     }
 
+    /// <summary>
+    /// 上方への移動
+    /// </summary>
+    /// <param name="animationEvent"></param>
     void UpMove(AnimationEvent animationEvent)
     {
         int _addPower = animationEvent.intParameter;
         float _count = animationEvent.floatParameter;
         this.transform.DOLocalMove(this.transform.position + transform.up * _addPower, _count);
+    }
+
+    void DownMove(AnimationEvent animationEvent)
+    {
+        int _addPower = animationEvent.intParameter;
+        float _count = animationEvent.floatParameter;
+        this.transform.DOLocalMove(this.transform.position + -transform.up * _addPower, _count);
+    }
+
+    void MoveStop()
+    {
+        _is = false;
+    }
+
+    void FrontMove00(AnimationEvent animationEvent)
+    {
+        int addspeed = animationEvent.intParameter;
+        while (_is)
+        {
+            _rb.velocity = transform.forward * addspeed;
+        }
+    }
+    void DownMove00(int addspeed)
+    {
+        //int addspeed = animationEvent.intParameter;
+        while (_isGrounded)
+        {
+            //_rb.velocity = -transform.up * addspeed;
+            _rb.transform.position = -transform.up * addspeed;
+
+            //_rb.AddForce(Vector3.down * addspeed );
+            //_rb.AddForce(-transform.up * addspeed , ForceMode.VelocityChange);
+        }
     }
 
     /// <summary>
