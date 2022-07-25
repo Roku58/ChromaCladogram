@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 4383450581694189559}
   - component: {fileID: 7669106283354600025}
   - component: {fileID: 7727290663479453448}
-  - component: {fileID: 8386083027982104650}
-  - component: {fileID: 6379567389800293573}
-  - component: {fileID: 4803142906341449602}
   m_Layer: 0
   m_Name: reaperscythe
   m_TagString: Weapon
@@ -86,42 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8386083027982104650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3808394613613368931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a9663c2a08ede74589e79e5e707157c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _atk: 10
---- !u!65 &6379567389800293573
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3808394613613368931}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.10008775, y: 0.10502118, z: 1.7769527}
-  m_Center: {x: 0.0006984435, y: -0.074665174, z: -0.031133354}
---- !u!65 &4803142906341449602
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3808394613613368931}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.100087725, y: 1.1602093, z: 0.20369792}
-  m_Center: {x: 0.0006986315, y: 0.36190456, z: 0.64942294}
