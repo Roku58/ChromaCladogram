@@ -9,10 +9,14 @@ using DG.Tweening;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayreMove : MonoBehaviour
 {
-    [SerializeField] float _moveSpeed = 7.5f;
-    [SerializeField] float _atackmoveSpeed = 0.1f;
-    [SerializeField] float _jumpPower = 5f;
-    [SerializeField] float _stepPower = 30f;
+    [SerializeField]
+    float _moveSpeed = 7.5f;
+    [SerializeField]
+    float _atackmoveSpeed = 0.1f;
+    [SerializeField]
+    float _jumpPower = 5f;
+    [SerializeField]
+    float _stepPower = 30f;
     int jumpCount;
     bool _isGrounded;
     bool _isAnimMove = false;
@@ -292,19 +296,5 @@ public class PlayreMove : MonoBehaviour
         _rb.drag = 0;
     }
 
-    /// <summary>
-    /// 打ち上げ用の関数
-    /// </summary>
-    //void Launch() 
-    //{
-    //    _rb.DOMoveY(7f, 0.5f); //Y方向に0.5秒かけて上昇
-    //    Collider[] hitEnemies = Physics.OverlapSphere(AttackPoint.position, AttackRange); //コライダー出現
-    //    foreach (Collider enemy in hitEnemies)
-    //    {
-    //        if(enemy.GetComponent<Enemy>())
-    //        {
-    //            enemy.GetComponent<Enemy>().Launch(); //攻撃を受けた敵を打ち上げます。
-    //        }
-    //    }
-    //}
+
 }
