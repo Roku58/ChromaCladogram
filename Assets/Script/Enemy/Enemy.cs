@@ -66,12 +66,23 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Weapon")
-        {
-            collision.gameObject.GetComponent<PlayerState>().GetDamage(_atk);
-        }
+        //if (collision.gameObject.tag == "Weapon")
+        //{
+        //    collision.gameObject.GetComponent<PlayerState>().GetDamage(_atk);
+        //}
     }
 
+    /// <summary>
+    /// 対象のダメージ関数呼び出し処理
+    /// </summary>
+    /// <param name="collider"></param>
+    public void CallDamage(Collider collider)
+    {
+        if (collider.gameObject.GetComponent<PlayerState>())
+        {
+            collider.gameObject.GetComponent<PlayerState>().GetDamage(_atk);
+        }
+    }
     /// <summary>
     /// 攻撃を受けた敵を打ち上げます。
     /// </summary>
@@ -113,7 +124,7 @@ public class Enemy : MonoBehaviour
             {
             _impulseSource.GenerateImpulse();
             //_impulseSource.GenerateImpulseAt(Vector3.zero, Vector3.up);
-        }
+            }
         if (_hp <= 0)
         {
             Death();

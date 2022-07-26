@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
 		}
 	}
 	/// <summary>
-	/// 時間を遅らせる処理
+	/// 時間を遅らせる処理(ヒットストップ)
 	/// </summary>
 	public void SlowDown()
 	{
