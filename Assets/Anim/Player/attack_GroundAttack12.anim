@@ -94423,6 +94423,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.56666666
+    functionName: Attack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.93333334
     functionName: ONGrvity
     data: 
@@ -94437,7 +94444,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 2
+  - time: 1.1
+    functionName: Attack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.0666666
     functionName: AtackEnd
     data: 
     objectReferenceParameter: {fileID: 0}

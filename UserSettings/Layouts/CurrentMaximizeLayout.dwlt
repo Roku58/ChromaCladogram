@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 11132
+  controlID: 11669
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 11133
+  controlID: 11670
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 11124
+  controlID: 11694
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 11125
+  controlID: 11695
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0.6615606, y: 1.2020911, z: 2.3621833}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0}
+    m_Value: {x: 0.6615606, y: 1.2020911, z: 2.3621833}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -591,11 +591,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.43260407, y: 0.041898135, z: -0.020130606, w: 0.900385}
     speed: 2
-    m_Value: {x: 0, y: -0.99999994, z: -0, w: 0}
+    m_Value: {x: -0.43260407, y: -0.041898135, z: 0.020130606, w: -0.900385}
   m_Size:
     m_Target: 2.1533337
     speed: 2
-    m_Value: 0.81393355
+    m_Value: 2.1533337
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000086400000000000052870000128600009285000016860000aa860000c4740000b6740000d2740000c26f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 11134
+  controlID: 11671
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52

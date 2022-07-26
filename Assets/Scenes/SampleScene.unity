@@ -10341,6 +10341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2268287358978291646, guid: 3d21a5f7e3bcf3c41b231016ab408063, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5307663118428438705, guid: 3d21a5f7e3bcf3c41b231016ab408063, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10389,13 +10393,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5307663118428438733, guid: 3d21a5f7e3bcf3c41b231016ab408063, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5307663118428438735, guid: 3d21a5f7e3bcf3c41b231016ab408063, type: 3}
       propertyPath: _attackRange
       value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 5307663118428438735, guid: 3d21a5f7e3bcf3c41b231016ab408063, type: 3}
       propertyPath: _attackRangeRadius
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5307663118428438735, guid: 3d21a5f7e3bcf3c41b231016ab408063, type: 3}
       propertyPath: _attackRangeCenter.y

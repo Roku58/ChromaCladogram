@@ -15,7 +15,7 @@ public class DamageUI : MonoBehaviour
 	[SerializeField, Header("ˆÚ“®’l")]
 	private float moveSpeed = 0.4f;
 	[SerializeField, Header("“§–¾“x‚ª•Ï‚í‚é‚Ü‚Å‚Ì‘Ò‚¿ŽžŠÔ")]
-	private float _waitTime = 0.2f;
+	private float _waitTime = 1;
 
 	void Start()
 	{
