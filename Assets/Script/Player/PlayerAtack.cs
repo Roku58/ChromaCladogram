@@ -7,12 +7,20 @@ public class PlayerAtack : MonoBehaviour
 {
     [SerializeField, Header("攻撃力")]
     int _atk = 10;
-    [SerializeField, Header("攻撃座標")]
-    Vector3 _attackPosPos ;
-    [SerializeField, Header("攻撃座標")]
-    float _attackRange;
-    [SerializeField, Header("攻撃座標")]
-    LayerMask _enemyLayers;
+    //[SerializeField, Header("攻撃座標")]
+    //Vector3 _attackPosPos ;
+    //[SerializeField, Header("攻撃座標")]
+    //float _attackRange;
+    //[SerializeField, Header("攻撃座標")]
+    //LayerMask _enemyLayers;
+
+    /// <summary>攻撃範囲の中心</summary>
+    [SerializeField, Header("攻撃範囲の中心")]
+    Vector3 _attackRangeCenter = default;
+    /// <summary>攻撃範囲の半径</summary>
+    [SerializeField, Header("攻撃範囲の半径")]
+    float _attackRangeRadius = 1f;
+
     Animator _animator;
     bool _isAtack = false;
     public bool IsAtack // プロパティ
@@ -43,16 +51,6 @@ public class PlayerAtack : MonoBehaviour
     void NormalAttack()
     {
         _animator.SetTrigger("Attack1");
-        ////コライダー出現
-        //Collider[] hitEnemies = Physics.OverlapSphere(_attackPosPos, _attackRange, _enemyLayers);
-        //foreach (Collider enemy in hitEnemies)
-        //{
-        //    if (enemy.gameObject.tag == "Enemy")
-        //    {
-        //        CallDamage(enemy);
-        //    }
-        //}
-
     }
 
     void SpecialAttack()
@@ -79,6 +77,40 @@ public class PlayerAtack : MonoBehaviour
         if (collider.gameObject.GetComponent<Enemy>())
         {
             collider.gameObject.GetComponent<Enemy>().GetDamage(_atk, collider);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // 攻撃範囲を赤い線でシーンビューに表示する
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(GetAttackRangeCenter(), _attackRangeRadius);
+    }
+
+    /// <summary>
+    /// 攻撃範囲の中心を計算して取得する
+    /// </summary>
+    /// <returns>攻撃範囲の中心座標</returns>
+    Vector3 GetAttackRangeCenter()
+    {
+        Vector3 center = this.transform.position + this.transform.forward * _attackRangeCenter.z
+            + this.transform.up * _attackRangeCenter.y
+            + this.transform.right * _attackRangeCenter.x;
+        return center;
+    }
+
+    void Attack()
+    {
+        // 攻撃範囲に入っているコライダーを取得する
+        var hitObj = Physics.OverlapSphere(GetAttackRangeCenter(), _attackRangeRadius);
+
+        // 各コライダーに対して、それが Rigidbody を持っていたら力を加える
+        foreach (Collider enemy in hitObj)
+        {
+            if (enemy.gameObject.tag == "Enemy")
+            {
+                CallDamage(enemy);
+            }
         }
     }
 
