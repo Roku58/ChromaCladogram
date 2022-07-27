@@ -29,9 +29,10 @@ public class DamageUI : MonoBehaviour
 	IEnumerator TextChange()
     {
 		transform.rotation = Camera.main.transform.rotation;
-		transform.position += Vector3.up * moveSpeed * Time.deltaTime;
 
-		yield return _waitTime;
+		yield return new WaitForSeconds(_waitTime);
+
+		transform.position += Vector3.up * moveSpeed * Time.deltaTime;
 
 		damageText.color = Color.Lerp(damageText.color, new Color(1f, 0f, 0f, 0f), fadeOutSpeed * Time.deltaTime);
 

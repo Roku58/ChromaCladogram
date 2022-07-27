@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 using TMPro;
 
 public class PlayerAtack : MonoBehaviour
 {
     [SerializeField, Header("攻撃力")]
     int _atk = 10;
-    //[SerializeField, Header("攻撃座標")]
-    //Vector3 _attackPosPos ;
-    //[SerializeField, Header("攻撃座標")]
-    //float _attackRange;
-    //[SerializeField, Header("攻撃座標")]
-    //LayerMask _enemyLayers;
+    [SerializeField, Header("攻撃倍率")]
+    float _atkanim = 0;
 
     /// <summary>攻撃範囲の中心</summary>
     [SerializeField, Header("攻撃範囲の中心")]
@@ -23,6 +20,8 @@ public class PlayerAtack : MonoBehaviour
     float _attackRangeRadius = 1f;
 
     Animator _animator;
+    CinemachineImpulseSource _impulseSource = default;
+
     bool _isAtack = false;
     public bool IsAtack // プロパティ
     {
@@ -33,6 +32,8 @@ public class PlayerAtack : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
+
     }
 
     void Update()
@@ -74,10 +75,16 @@ public class PlayerAtack : MonoBehaviour
     /// <param name="collider"></param>
     public void CallDamage(Collider collider)
     {
-        //↓に拠点のダメージ処理があるスクリプトを指定
+        float a = _atk * _atkanim;
+        int b = (int)a;
         if (collider.gameObject.GetComponent<Enemy>())
         {
-            collider.gameObject.GetComponent<Enemy>().GetDamage(_atk, collider);
+            collider.gameObject.GetComponent<Enemy>().GetDamage(b, collider);
+            if (_impulseSource)
+            {
+                _impulseSource.GenerateImpulse();
+                //_impulseSource.GenerateImpulseAt(Vector3.zero, Vector3.up);
+            }
         }
     }
 

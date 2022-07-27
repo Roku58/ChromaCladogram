@@ -26,14 +26,12 @@ public class Enemy : MonoBehaviour
     TimeManager _timeManager = default;
     GameObject _player = default; //
     Rigidbody _rb = default;
-    CinemachineImpulseSource _impulseSource = default;
 
 
     void Start()
     {
         _hp = _maxHp;
         _player = GameObject.FindGameObjectWithTag("Player");
-        _impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Update()
@@ -120,11 +118,7 @@ public class Enemy : MonoBehaviour
 
         _timeManager.SlowDown();
 
-        if(_impulseSource)
-            {
-            _impulseSource.GenerateImpulse();
-            //_impulseSource.GenerateImpulseAt(Vector3.zero, Vector3.up);
-            }
+
         if (_hp <= 0)
         {
             Death();
