@@ -19,6 +19,7 @@ public class PlayreMove : MonoBehaviour
     float _stepPower = 30f;
     int jumpCount;
     bool _isGrounded;
+    bool _canMove = true;
     bool _isAnimMove = false;
     Rigidbody _rb = default;
     Animator _anim = default;
@@ -41,7 +42,7 @@ public class PlayreMove : MonoBehaviour
         Move();
         Jump();
         _isGrounded = CheckGrounded();
-
+        _canMove = _playerAtack.IsAtack;
         //if (_playerAtack.IsAtack && !_isGrounded)
         //{
         //    OffGrvity();
@@ -93,7 +94,7 @@ public class PlayreMove : MonoBehaviour
         // Y 軸方向の速度を保ちながら、速度ベクトルを求めてセットする
         Vector3 velocity = dir.normalized * _moveSpeed;
         velocity.y = _rb.velocity.y;
-        if (_playerAtack.IsAtack)
+        if (_canMove)
         {
             _rb.velocity = dir.normalized * _moveSpeed * _atackmoveSpeed;
         }
@@ -266,6 +267,105 @@ public class PlayreMove : MonoBehaviour
         }
     }
 
+    void FrontMove000(AnimationEvent animationEvent)
+    {
+        //duration秒かけて任意の変数の値が currentValue から endValue になります
+
+        // 何秒かかるか
+        float duration = animationEvent.floatParameter;
+
+        // 最終値変化量
+        int endValue = animationEvent.intParameter;
+
+        // 現在の値（変化する値）
+        int currentValue = endValue / 4;
+
+        // Tweenの生成
+        DOTween.To
+        (
+            () => currentValue,
+            value => currentValue = value,
+            endValue,
+            duration
+        )
+        .OnUpdate(() => _rb.velocity += transform.forward * currentValue);
+        //.OnUpdate(() => _rb.velocity = Quaternion.LookRotation(Vector3.forward,) * currentValue);
+    }
+    void BackMove000(AnimationEvent animationEvent)
+    {
+        //duration秒かけて任意の変数の値が currentValue から endValue になります
+
+        // 何秒かかるか
+        float duration = animationEvent.floatParameter;
+
+        // 最終値変化量
+        int endValue = animationEvent.intParameter;
+
+        // 現在の値（変化する値）
+        int currentValue = endValue / 4;
+
+        // Tweenの生成
+        DOTween.To
+        (
+            () => currentValue,
+            value => currentValue = value,
+            endValue,
+            duration
+        )
+        .OnUpdate(() => _rb.velocity += -transform.forward * currentValue);
+        //.OnUpdate(() => _rb.velocity = Quaternion.LookRotation(Vector3.forward,) * currentValue);
+    }
+
+    void UpMove000(AnimationEvent animationEvent)
+    {
+        //duration秒かけて任意の変数の値が currentValue から endValue になります
+
+        // 何秒かかるか
+        float duration = animationEvent.floatParameter;
+
+        // 最終値変化量
+        int endValue = animationEvent.intParameter;
+
+        // 現在の値（変化する値）
+        int currentValue = endValue / 4;
+
+        // Tweenの生成
+        DOTween.To
+        (
+            () => currentValue,
+            value => currentValue = value,
+            endValue,
+            duration
+        )
+        .OnUpdate(() => _rb.velocity += transform.up * currentValue);
+        //.OnUpdate(() => _rb.velocity = Quaternion.LookRotation(Vector3.forward,) * currentValue);
+    }
+
+    void DownMove000(AnimationEvent animationEvent)
+    {
+        //duration秒かけて任意の変数の値が currentValue から endValue になります
+
+        // 何秒かかるか
+        float duration = animationEvent.floatParameter;
+
+        // 最終値変化量
+        int endValue = animationEvent.intParameter;
+
+        // 現在の値（変化する値）
+        int currentValue = endValue / 4;
+
+        // Tweenの生成
+        DOTween.To
+        (
+            () => currentValue,
+            value => currentValue = value,
+            endValue,
+            duration
+        )
+        .OnUpdate(() => _rb.velocity += -transform.up * currentValue);
+        //.OnUpdate(() => _rb.velocity = Quaternion.LookRotation(Vector3.forward,) * currentValue);
+    }
+
     /// <summary>
     /// 最も近いエネミーを探す処理
     /// </summary>
@@ -289,7 +389,7 @@ public class PlayreMove : MonoBehaviour
     /// </summary>
     public void OffGrvity()
     {
-        _rb.drag = 50;
+        _rb.drag = 500;
     }
     public void ONGrvity()
     {

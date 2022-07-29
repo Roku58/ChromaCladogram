@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: attack_GroundAttack12
+  m_Name: GroundAttack04
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -94445,11 +94445,11 @@ AnimationClip:
     intParameter: 20
     messageOptions: 0
   - time: 1.1
-    functionName: Attack
+    functionName: DownMove00
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 50
     messageOptions: 0
   - time: 2.1
     functionName: AtackEnd

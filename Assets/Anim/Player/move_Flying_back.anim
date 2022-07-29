@@ -18313,9 +18313,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: BackMove
+    functionName: BackMove000
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.8
-    intParameter: 8
+    floatParameter: 0.3
+    intParameter: 50
     messageOptions: 0

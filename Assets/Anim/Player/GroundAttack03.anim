@@ -74407,6 +74407,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.33333334
+    functionName: UpMove000
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 50
+    messageOptions: 0
   - time: 0.36666667
     functionName: Attack
     data: 
@@ -74422,6 +74429,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
+    functionName: OffGrvity
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
     functionName: OffGrvity
     data: 
     objectReferenceParameter: {fileID: 0}
